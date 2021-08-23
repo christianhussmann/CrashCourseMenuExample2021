@@ -8,7 +8,26 @@ namespace InnoTech.VideoApplication2021.Infrastructure.DataAccess.Repositories
     {
         private static List<Video> _videosTable = new List<Video>();
         private static int _id = 1;
-        public Video Add(Video video)
+
+
+        Video IVideoRepository.Add(Video video)
+        {
+            return Add(video);
+        }
+
+        public Video ReadById(int id)
+        {
+            foreach (var video in _videosTable)
+            {
+                if (video.Id == id)
+                {
+                    return video;
+                }
+            }
+
+            return null;
+        }
+        public static Video Add(Video video)
         {
             video.Id = _id++;
             _videosTable.Add(video);
@@ -18,6 +37,33 @@ namespace InnoTech.VideoApplication2021.Infrastructure.DataAccess.Repositories
         public List<Video> FindAll()
         {
             return _videosTable;
+        }
+        
+        //remove later when we use UOW
+        public Video Update(Video videoUpdate)
+        {
+            var videoFromDB = this.ReadById(videoUpdate.Id);
+            if (videoFromDB != null)
+            {
+                videoFromDB.Title = videoUpdate.Title;
+                videoFromDB.ReleaseDate = videoUpdate.ReleaseDate;
+                videoFromDB.StoryLine = videoUpdate.StoryLine;
+                return videoFromDB;
+            }
+
+            return null;
+        }
+        
+        public Video Delete(int id)
+        {
+            var videoFound = this.ReadById(id);
+            if (videoFound != null)
+            {
+                _videosTable.Remove(videoFound);
+                return videoFound;
+            }
+
+            return null;
         }
     }
 }
