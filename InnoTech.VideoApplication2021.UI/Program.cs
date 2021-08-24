@@ -31,20 +31,6 @@ namespace InnoTech.VideoApplication2021.UI
                 ReleaseDate = DateTime.Now
             };
 
-            private Video FindVideoById()
-            {
-                Console.WriteLine("Insert Video Id: ");
-                int id;
-                while (!int.TryParse(Console.ReadLine(), out id))
-                {
-                    Console.WriteLine("Please insert a number");
-                }
-
-                return VideoRepositoryInMemory.ReadById(id);
-            }
-            
-            private static void DeleteVideo
-            
             var menu = new Menu(service);
             menu.Start();
 
