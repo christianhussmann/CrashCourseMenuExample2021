@@ -42,7 +42,7 @@ namespace InnoTech.VideoApplication2021.Infrastructure.DataAccess.Repositories
         //remove later when we use UOW
         public Video Update(Video videoUpdate)
         {
-            var videoFromDB = this.ReadById(videoUpdate.Id);
+            var videoFromDB = this.ReadById(videoUpdate.Id.Value);
             if (videoFromDB != null)
             {
                 videoFromDB.Title = videoUpdate.Title;
