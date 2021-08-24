@@ -16,21 +16,6 @@ namespace InnoTech.VideoApplication2021.UI
             IVideoRepository repo = new VideoRepositoryInMemory();
             IVideoService service = new VideoService(repo);
 
-            var video1 = new Video()
-            {
-                Title = "God please help me learn this",
-                StoryLine = "There was apon a time",
-                ReleaseDate = DateTime.Now
-            };
-            VideoRepositoryInMemory.Add(video1);
-
-            var video2 = new Video()
-            {
-                Title = "I am doing the best i can!",
-                StoryLine = "Youtube videos for the win!",
-                ReleaseDate = DateTime.Now
-            };
-
             var menu = new Menu(service);
             menu.Start();
 

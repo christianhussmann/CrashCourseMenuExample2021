@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using InnoTech.VideoApplication2021.Domain.IRepositories;
 using InnotTech.VideoApplication2021.Core.Models;
@@ -10,9 +11,33 @@ namespace InnoTech.VideoApplication2021.Infrastructure.DataAccess.Repositories
         private static int _id = 1;
 
 
+        public VideoRepositoryInMemory()
+        {
+            var video1 = new Video()
+            {
+                Title = "God please help me learn this",
+                StoryLine = "There was apon a time",
+                ReleaseDate = DateTime.Now
+            };
+            Add(video1);
+
+            var video2 = new Video()
+            {
+                Title = "I am doing the best i can!",
+                StoryLine = "Youtube videos for the win!",
+                ReleaseDate = DateTime.Now
+            };
+            Add(video2);
+        }
+        
         Video IVideoRepository.Add(Video video)
         {
             return Add(video);
+        }
+
+        Video IVideoRepository.ReadById(int id)
+        {
+            return ReadById(id);
         }
 
         public Video ReadById(int id)
@@ -27,7 +52,7 @@ namespace InnoTech.VideoApplication2021.Infrastructure.DataAccess.Repositories
 
             return null;
         }
-        public static Video Add(Video video)
+        public Video Add(Video video)
         {
             video.Id = _id++;
             _videosTable.Add(video);
@@ -40,7 +65,7 @@ namespace InnoTech.VideoApplication2021.Infrastructure.DataAccess.Repositories
         }
         
         //remove later when we use UOW
-        public Video Update(Video videoUpdate)
+        public Video Edit(Video videoUpdate)
         {
             var videoFromDB = this.ReadById(videoUpdate.Id.Value);
             if (videoFromDB != null)

@@ -11,12 +11,13 @@ namespace InnoTech.VideoApplication2021.Domain.IRepositories
         //Read Video
         Video ReadById(int id);
 
-        //Update Video
-        Video Update(Video videoUpdate);
+        //Edit Video
+        Video Edit(Video video);
 
         //Delete videos
         Video Delete(int id);
         
         List<Video> FindAll();
+        
     }
 }

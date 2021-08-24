@@ -1,5 +1,6 @@
 using System;
 using System.Xml.Serialization;
+using InnoTech.VideoApplication2021.Infrastructure.DataAccess.Repositories;
 using InnotTech.VideoApplication2021.Core.IServices;
 using InnotTech.VideoApplication2021.Core.Models;
 
@@ -30,6 +31,15 @@ namespace InnoTech.VideoApplication2021.UI
                 {
                     ReadAll();
                 } 
+                else if (choice == 3)
+                {
+                    ReadAll();
+                    Print(StringConstants.DeletePromptMessage);
+                    DeleteVideo(GetVideoSearchMenuSelection());
+                }
+                
+                
+                
                 else if (choice == 5)
                 {
                     SearchVideo();
@@ -41,6 +51,15 @@ namespace InnoTech.VideoApplication2021.UI
             }
         }
 
+        private void EditVideo()
+        {
+            
+            ReadAll();
+            var video = _service.ReadById(id);
+            _service.Edit(video);
+            
+        }
+        
         private void ReadAll()
         {
             Print("Here are all your videos");
@@ -103,6 +122,24 @@ namespace InnoTech.VideoApplication2021.UI
             Print($"Video With Following Properties Created - Id: {video.Id.Value} Title: {video.Title} StoryLine: {video.StoryLine}");
             PrintNewLine();
         }
+
+        private Video FindVideoById()
+        {
+            Console.WriteLine("Insert Video Id: ");
+            int id;
+            while (!int.TryParse(Console.ReadLine(), out id))
+            {
+                Console.WriteLine("Please insert a number");
+            }
+
+            return _service.ReadById(id);
+        }
+
+        private void DeleteVideo(int id)
+        {
+            var video = _service.Delete(id);
+            Console.WriteLine($"{video.Title} Has been deleted");
+    }
 
         private void PleaseTryAgain()
         {
