@@ -33,9 +33,9 @@ namespace InnoTech.VideoApplication2021.Domain.Services
             return _repo.Delete(id);
         }
 
-        public Video Edit(Video video)
+        public Video UpdateVideo(Video video)
         {
-            return _repo.Edit(video);
+            return _repo.UpdateVideo(video);
         }
         
     }

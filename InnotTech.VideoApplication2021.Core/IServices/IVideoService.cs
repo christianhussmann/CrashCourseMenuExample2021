@@ -13,6 +13,6 @@ namespace InnotTech.VideoApplication2021.Core.IServices
 
         Video Delete(int id);
 
-        Video Edit(Video video);
+        Video UpdateVideo(Video video);
     }
 }

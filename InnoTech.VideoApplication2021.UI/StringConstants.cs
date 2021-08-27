@@ -14,5 +14,6 @@ namespace InnoTech.VideoApplication2021.UI
         public const string CreateVideoGreeting = "Create Video";
         public const string VideoStoryLine = "Type Video StoryLine (with more then 2 char and less then 240)";
         public const string VideoName = "Type Video Name (with more then 2 char and less then 40)";
+        public static readonly string UpdateMoviePrompt = "Enter id of movie to update:";
     }
 }

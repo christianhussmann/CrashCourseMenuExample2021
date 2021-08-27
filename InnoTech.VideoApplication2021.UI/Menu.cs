@@ -30,16 +30,18 @@ namespace InnoTech.VideoApplication2021.UI
                 } else if (choice == 2)
                 {
                     ReadAll();
-                } 
-                else if (choice == 3)
+                } else if (choice == 3)
                 {
                     ReadAll();
                     Print(StringConstants.DeletePromptMessage);
                     DeleteVideo(GetVideoSearchMenuSelection());
+                } else if (choice == 4)
+                {
+                    // Update
+                    ReadAll();
+                    Print(StringConstants.UpdateMoviePrompt);
+                    UpdateVideo(GetVideoSearchMenuSelection());
                 }
-                
-                
-                
                 else if (choice == 5)
                 {
                     SearchVideo();
@@ -51,12 +53,19 @@ namespace InnoTech.VideoApplication2021.UI
             }
         }
 
-        private void EditVideo()
+        private void UpdateVideo(int id)
         {
             
-            ReadAll();
+            Console.WriteLine("Enter new title:");
+            var newTitle = Console.ReadLine();
+            Console.WriteLine("Enter new StoryLine:");
+            var newStoryLine = Console.ReadLine();
             var video = _service.ReadById(id);
-            _service.Edit(video);
+            video.Title = newTitle;
+            video.StoryLine = newStoryLine;
+            _service.UpdateVideo(video);
+            Console.WriteLine($"Video info updated.");
+            
             
         }
         
